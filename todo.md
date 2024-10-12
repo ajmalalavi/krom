@@ -1,0 +1,3 @@
+- Dark and rearrange bookmarks
+- Google search
+- Bookmarks search
