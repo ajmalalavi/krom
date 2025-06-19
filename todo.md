@@ -1,3 +1,2 @@
-- Dark and rearrange bookmarks
-- Google search
-- Bookmarks search
+- widget ideas
+- folder reorder, drag into folder

@@ -1,6 +1,13 @@
 :root {
-  --bg-color: #f8f9fa;
-  --fg-color: #1e1e1e;
+  --bg-color: 248, 248, 248;
+  --fg-color: 56, 56, 56;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg-color: 248, 248, 248;
+    --bg-color: 56, 56, 56;
+  }
 }
 
 *,
@@ -19,11 +26,12 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: sans-serif;
   font-size: 1rem;
   flex-grow: 1;
   width: 100%;
-  overflow: hidden;
+  margin: 0;
+  color: rgb(var(--fg-color));
 }
 
 @keyframes gradient {
@@ -40,36 +48,120 @@ body {
   }
 }
 
-.container {
-  padding: 10rem;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.3rem;
 }
 
-.km {
-  background-color: rgba(255, 255, 255, 0.4);
+::-webkit-scrollbar-track {
+  box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--fg-color), 0.5);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--fg-color), 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.km-nav {
+  min-width: 400px;
+  width: 40%;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.km-nav input {
+  width: 100%;
+  padding: 0.8rem 2.4rem;
+  border-radius: 1rem;
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  color: inherit;
+  background-color: rgb(var(--bg-color));
+}
+
+.km-search-icon,
+.km-settings {
+  position: absolute;
+  width: 1.75rem;
+  height: auto;
+  margin: 0.5rem;
+}
+
+.km-settings {
+  right: 0;
+  cursor: pointer;
+}
+
+.km-nav input:focus {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.km-nav input:focus+.km-list {
+  display: flex;
+}
+
+.km-list {
+  width: 100%;
+  flex-direction: column;
+  position: absolute;
+  background-color: rgb(var(--bg-color));
+  border-radius: 0 0 1rem 1rem;
+  display: none;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+.km-list a {
+  padding: 0.6rem 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.km-list a:hover {
+  background-color: rgba(var(--fg-color), 0.1);
+}
+
+.km-list a .km-icon {
+  width: 1.4rem;
+  height: auto;
+  font-size: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 0.3rem;
+}
+
+.km-noresult {
+  padding: 0.4rem 0.6rem;
+  display: none;
+}
+
+.km-content {
+  background-color: rgba(var(--bg-color), 0.4);
   border-radius: 1rem;
   padding: 1rem;
   width: max-content;
   min-width: 50%;
   max-width: 100%;
-  margin: auto;
   text-align: center;
-}
-
-.km-title {
-  font-size: 1.5rem;
-  margin: 1rem auto;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.km-title svg {
-  width: 2rem;
-  fill: currentColor;
-  cursor: pointer;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .km-menu input {
@@ -79,13 +171,13 @@ body {
 .km-menu label {
   cursor: pointer;
   transition: 0.25s ease;
-  border-bottom: 0.2rem solid rgba(255, 255, 255, 0.6);
-  padding: 0 1.2rem 0.8rem;
+  border-bottom: 0.2rem solid rgba(var(--bg-color), 0.6);
+  padding: 0.8rem 1.2rem 0.8rem;
   display: inline-block;
 }
 
 .km-menu input:checked+label {
-  border-color: white;
+  border-color: var(--bg-color);
   font-weight: bold;
 }
 
@@ -94,24 +186,31 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3.3rem;
+  gap: 2rem;
   margin-top: 1.8rem;
   margin-bottom: 0.8rem;
 }
 
 .km-item {
-  width: 5rem;
+  width: 6rem;
   text-align: center;
   display: block;
+  color: inherit;
+  text-decoration: none;
+  padding: 0.5rem;
 }
 
 .km-item.hide {
   display: none;
 }
 
-.km-item a {
-  color: inherit;
-  text-decoration: none;
+.km-item.dropzone {
+  opacity: 0.5;
+  border: 1px dashed rgb(var(--fg-color));
+}
+
+.km-item.dragging {
+  opacity: 0.5;
 }
 
 .km-icon {
@@ -124,10 +223,22 @@ body {
   height: auto;
   aspect-ratio: 1;
   text-transform: uppercase;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .km-label {
   overflow: hidden;
   text-overflow: ellipsis;
+  text-wrap: nowrap;
   font-size: 0.9rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.km-footer {
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
 }

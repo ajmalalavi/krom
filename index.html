@@ -5,32 +5,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>New Tab</title>
 </head>
 
 <body>
   <div class="container">
-    <div class="km">
-      <div class="km-title">
-        <span>Krom by Otomo</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280.028 280.028">
-          <title>Settings</title>
-          <path style="fill:#E2574C;" d="M52.506,0h175.017c9.661,0,17.502,7.832,17.502,17.502v245.024c0,10.212-7.71,17.502-17.502,17.502
-            c-8.191,0-70.269-38.81-78.758-43.754c-8.497-4.944-8.628-5.233-17.502,0c-8.873,5.259-70.409,43.754-78.758,43.754
-            c-9.915,0-17.502-7.027-17.502-17.502V17.502C35.004,7.832,42.845,0,52.506,0z" />
-          <path style="fill:#CB4E44;"
-            d="M227.523,0h-87.509v232.466c2.258-0.018,4.419,1.278,8.751,3.807
-            c8.453,4.927,70.086,43.448,78.618,43.728h0.411c9.661-0.14,17.23-7.359,17.23-17.475V17.502C245.025,7.832,237.184,0,227.523,0z" />
-          <path style="fill:#EFC75E;" d="M210.048,105.395l-46.038-3.404l-23.995-49.486l-24.266,49.486l-45.758,3.404l30.628,38.197
-            l-8.751,48.9l48.147-22.507l48.147,22.507l-8.908-48.9C179.253,143.593,210.048,105.395,210.048,105.395z" />
-          <polygon style="fill:#D7B354;" points="188.162,192.501 179.253,143.602 210.048,105.395 164.009,101.991 140.015,52.505 
-            140.015,170.003 	" />
-        </svg>
+    <div class="km-nav">
+      <div class="km-search">
+        <span class="km-search-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>Search Bookmarks</title><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
+        </span>
+        <input type="text" name="search" placeholder="Search bookmarks..">
+        <div class="km-list">
+          <span class="km-noresult">No results found!</span>
+        </div>
+        <span class="km-settings">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>Bookmark Settings</title><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+        </span>
       </div>
+    </div>
+    <div class="km-content">
       <div class="km-menu">
         <input type="radio" name="km-input" id="km-input-main" value="main" checked>
         <label for="km-input-main">Home</label>
@@ -38,6 +33,9 @@
         <label for="km-input-all">View all</label>
       </div>
       <div class="km-folder"></div>
+    </div>
+    <div class="km-footer">
+      <span>Krom Manager | Powered by ᴏᴛᴏᴍᴏ</span>
     </div>
   </div>
   <script src="script.js"></script>
